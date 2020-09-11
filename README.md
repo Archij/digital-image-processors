@@ -1,1 +1,2 @@
-# digital-image-processors
+# Digital image processors
+
