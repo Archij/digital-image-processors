@@ -85,18 +85,18 @@ global Spectrum Picture hp M N;
 if FileName~=0
     FullName = [PathName FileName];
     Picture = imread(FullName);
-    axes(handles.axes1); % Izvçlamies pirmâs asis
+    axes(handles.axes1); %choose the first axes
     imshow(Picture);
 end
 [M, N]  = size(Picture);
-F = fft2(Picture); %iegûstam attçla f 2D diskrçto Furjç transformâciju
-axes(handles.axes2); % Izvçlamies otras asis
+F = fft2(Picture); %2d Fourier transform
+axes(handles.axes2); %choose the second axes
 Spectrum = fftshift(log(1+abs(F)));
-Im = imshow(Spectrum,[]); %iegûstam spektru, kurâ redzami impulsi
-%spektru centrçjam ar fftshift palîdzîbu
+Im = imshow(Spectrum,[]); %obtain a spectrum in which pulses are visible
+%center the spectrum with fftshift
 set(Im,'ButtonDownFcn',@axes2_ButtonDownFcn)
 hp = impixelinfo;
-set(hp,'Visible','Off'); %Uzliekâm neredzamu pikseïa koordinâðu joslu
+set(hp,'Visible','Off'); %Sets an invisible pixel coordinate bar
 
 
 % --------------------------------------------------------------------
