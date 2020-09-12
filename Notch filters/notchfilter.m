@@ -19,8 +19,8 @@
  %           D1(u,v)D2(u,v)
  
 % where D1(u,v) = [(u + M/2 - u0)^2 + (v + N/2 - v0)^2]^1/2, and, similar,
-% D2(u,v) = [(u - M/2 + u0)^2 + (v - N/2 + v0)^2]^1/2. This is the noch-stop filter because it weakens 
-%the frequencies at the noch locations. The noch-pass filter is characterized by the expression HP = 1 - HR.
+% D2(u,v) = [(u - M/2 + u0)^2 + (v - N/2 + v0)^2]^1/2. This is the notch-stop filter because it weakens 
+%the frequencies at the noch locations. The notch-pass filter is characterized by the expression HP = 1 - HR.
  
 %The filter is not centered in a frequency rectangle, so to view it as image or grid plot, it must be centered with H = fftshift (H).
  
@@ -28,7 +28,7 @@
 %the spectrum, it should be noted that the upper, the left corner is in coordinates (1,1). The transformation center is located at
 %coordinates (u0, v0) = (floor (M / 2) + 1, floor (N / 2) + 1).
 
-K = size(CENTERS,1); %obtains the number of noch pairs
+K = size(CENTERS,1); %obtains the number of notch pairs
 
 if length(RADII) == 1
     RADII = RADII*ones(K,1);
@@ -40,10 +40,10 @@ end
 %generates a network grid array
 [U,V] = dftuv(M,N);
 
-%generates a noch-pass filter
+%generates a notch-pass filter
 H = zeros(M,N);
 for i=1:K
-    %the coordinates of the pair of nochs (two points) are obtained for each center of noch
+    %the coordinates of the pair of notchs (two points) are obtained for each center of notch
     U1 = U - CENTERS(i,1) + M/2;
     V1 = V - CENTERS(i,2) + N/2;
     U2 = U + CENTERS(i,1) - M/2;
@@ -52,12 +52,12 @@ for i=1:K
     %squared distance arrays
     D1 = sqrt(U1.^2 + V1.^2);
     D2 = sqrt(U2.^2 + V2.^2);
-    D0 = RADII(i); %radius from the center of the noch to either of the two symmetrical points
+    D0 = RADII(i); %radius from the center of the notch to either of the two symmetrical points
     H = H + (1-1./(1+(D0^2./(D1.*D2 + eps)).^ORDER(i)));
     
 end
 
-%converts H to a noch-stop filter if type 'reject' was entered
+%converts H to a notch-stop filter if type 'reject' was entered
 if strcmp(type,'reject')
     H = 1 - H;
 end

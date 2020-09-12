@@ -1,9 +1,9 @@
-%Noch filter testing
+%Notch filter testing
 f = imread('FigP4.5(a)(HeadCT_corrupted).tif');
 figure(1)
 imshow(f)
 
-%Use the spectrum of the image f and determine the centers of the nochs using the function pixval, 
+%Use the spectrum of the image f and determine the centers of the notchs using the function pixval, 
 %find the coordinates of the pulses (216,216), (236,256), (256,247), (256,266), (276,256), (296,296).
 %Image dimensions: 512x512
 Hnr = notchfilter('reject', 512, 512, [216 216; 236 256; 256 247; 256 266; 276 256; 296 296], 5, 10);
@@ -20,9 +20,9 @@ d = imsubtract(g,g2); %image difference
 figure(4)
 imshow(d,[]);
 
-%With a noch-pass filter obtain a noise image
-Hnp = 1 - Hnr; %Obtain a noch-pass filter
-qn = dftfilt(f, Hnp); %Filters the image f with a noch-pass filter
+%With a notch-pass filter obtain a noise image
+Hnp = 1 - Hnr; %Obtain a notch-pass filter
+qn = dftfilt(f, Hnp); %Filters the image f with a notch-pass filter
 figure(5)
 imshow(qn,[]);
 
