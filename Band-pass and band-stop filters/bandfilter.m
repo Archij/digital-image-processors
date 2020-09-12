@@ -2,7 +2,7 @@ function H = bandfilter(type, M, N, RADII, WIDTH, ORDER)
 
 %The bandfilter function generates a band-pass or band-stop filter
 %H = BANDFILTER(TYPE, M, N, RADII, WIDTH, ORDER)  generates
-%the "butter" filter H, with dimensions MxN, and with a number of bands K.
+%the Butterworth filter H, with dimensions MxN, and with a number of bands K.
 %H is a band-pass or band-stop filter, depending on the type,
 % which can be 'pass' or 'reject'
 %RADII is a vector of length K containing radii (up to the center of the band)
@@ -12,7 +12,7 @@ function H = bandfilter(type, M, N, RADII, WIDTH, ORDER)
 %ORDER is a vector of length K containing an order for a "butter" filter for each band
 %If ORDER is scalar, then the same order is applied to all bands
 
-%The equation uses the "butter" filter expression to implement the band-stopfilter
+%The equation uses the Butterworth filter expression to implement the band-stopfilter
 %
 %                 1
 %Hr = ---------------------------
