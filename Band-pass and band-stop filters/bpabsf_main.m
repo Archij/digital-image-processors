@@ -5,7 +5,7 @@ N = 600;
 RADII = [50 200];
 %bandwidth
 WIDTH = [5 5];
-%"butter" filter order
+%Butterworth filter order
 ORDER = 20;
 Hr = bandfilter('reject', M, N, RADII, WIDTH, ORDER);
 Hp = bandfilter('pass', M, N, RADII, WIDTH, ORDER);
